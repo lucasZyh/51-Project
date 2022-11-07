@@ -1,0 +1,13 @@
+C51 COMPILER V9.59.0.0   MATRIKEY                                                          10/03/2022 15:40:13 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MATRIKEY
+OBJECT MODULE PLACED IN .\Objects\MatriKey.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE MatriKey.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -MatriKey.lst) OBJECT(.\Objects\MatriKey.obj)
+
+line level    source
+
+*** ERROR C318 OF MatriKey.c: can't open file 'MatriKey.c'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

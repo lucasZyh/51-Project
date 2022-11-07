@@ -1,0 +1,75 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              10/02/2022 22:41:34 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          unsigned char Number[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
+   4          void Shu(unsigned char location, number);//数码管调用函数
+   5          void Delay(unsigned int t);//延时函数
+   6          
+   7          
+   8          void main(){
+   9   1        while(1){
+  10   2          Shu(1,3);
+  11   2      //    Delay(500);
+  12   2          Shu(2,6);
+  13   2      //    Delay(500);
+  14   2          Shu(3,7);
+  15   2      //    Delay(1000);
+  16   2        }
+  17   1      }
+  18          
+  19          void Shu(unsigned char location, number){
+  20   1        switch(location){
+  21   2          case 1 : P2_4 = 1; P2_3 = 1; P2_2 = 1; break;
+  22   2          case 2 : P2_4 = 1; P2_3 = 1; P2_2 = 0; break;
+  23   2          case 3 : P2_4 = 1; P2_3 = 0; P2_2 = 1; break;
+  24   2          case 4 : P2_4 = 1; P2_3 = 0; P2_2 = 0; break;
+  25   2          case 5 : P2_4 = 0; P2_3 = 1; P2_2 = 1; break;
+  26   2          case 6 : P2_4 = 0; P2_3 = 1; P2_2 = 0; break;
+  27   2          case 7 : P2_4 = 0; P2_3 = 0; P2_2 = 1; break;
+  28   2          case 8 : P2_4 = 0; P2_3 = 0; P2_2 = 0; break;
+  29   2        }
+  30   1        P0=Number[number];
+  31   1        Delay(1);//消影
+  32   1        P0=0x00;
+  33   1      }
+  34          void Delay(unsigned int t)    //延时函数
+  35          {
+  36   1        
+  37   1        unsigned char i, j;
+  38   1        while(t){
+  39   2          i = 2;
+  40   2          j = 239;
+  41   2          do
+  42   2          {
+  43   3            while (--j);
+  44   3          } while (--i);
+  45   2          t--;
+  46   2        }
+  47   1      
+  48   1        
+  49   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    158    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V9.59.0.0   MAIN                                                              10/02/2022 22:41:34 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

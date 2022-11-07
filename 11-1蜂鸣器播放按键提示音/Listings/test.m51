@@ -1,0 +1,229 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/13/2022  20:29:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Delay.obj, .\Objects\Key.obj, .\Objects\Shu.obj, .\Objects\Buz
+>> zer.obj TO .\Objects\test PRINT (.\Listings\test.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Delay.obj (DELAY)
+  .\Objects\Key.obj (KEY)
+  .\Objects\Shu.obj (SHU)
+  .\Objects\Buzzer.obj (BUZZER)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\test (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?SHU
+            DATA    0012H     0002H     UNIT         ?DT?BUZZER
+            DATA    0014H     0002H     UNIT         _DATA_GROUP_
+            DATA    0016H     0001H     UNIT         ?DT?MAIN
+            IDATA   0017H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0063H     UNIT         ?PR?_SHU?SHU
+            CODE    00F2H     0061H     UNIT         ?PR?KEY?KEY
+            CODE    0153H     002BH     UNIT         ?PR?_BUZZER_TIME?BUZZER
+            CODE    017EH     001CH     UNIT         ?PR?MAIN?MAIN
+            CODE    019AH     0014H     UNIT         ?PR?_DELAY?DELAY
+            CODE    01AEH     000FH     UNIT         ?PR?BUZZER_DELAY500MS?BUZZER
+            CODE    01BDH     000DH     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\test (MAIN)
+
+
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                        -----    -----
+  +--> ?PR?KEY?KEY
+  +--> ?PR?_BUZZER_TIME?BUZZER
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/13/2022  20:29:24  PAGE 2
+
+
+  +--> ?PR?_SHU?SHU
+
+?PR?KEY?KEY                          0014H    0001H
+  +--> ?PR?_DELAY?DELAY
+
+?PR?_BUZZER_TIME?BUZZER              0014H    0002H
+
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   BUZZER_DELAY500US
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\test (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0016H         PUBLIC        KeyNumber
+  C:017EH         PUBLIC        main
+  -------         PROC          MAIN
+  C:017EH         LINE#         9
+  C:017EH         LINE#         11
+  C:017EH         LINE#         12
+  C:0183H         LINE#         13
+  C:0187H         LINE#         14
+  C:018EH         LINE#         15
+  C:0198H         LINE#         16
+  C:0198H         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:019AH         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:019AH         LINE#         2
+  C:019AH         LINE#         3
+  C:019AH         LINE#         6
+  C:019EH         LINE#         7
+  C:01A0H         LINE#         8
+  C:01A2H         LINE#         10
+  C:01A2H         LINE#         11
+  C:01A4H         LINE#         12
+  C:01A6H         LINE#         13
+  C:01ABH         LINE#         14
+  C:01ADH         LINE#         17
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        DELAY
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/13/2022  20:29:24  PAGE 3
+
+
+
+  -------         MODULE        KEY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00B0H.0       PUBLIC        P3_0
+  B:00B0H.1       PUBLIC        P3_1
+  B:00B0H.2       PUBLIC        P3_2
+  B:00B0H.3       PUBLIC        P3_3
+  C:00F2H         PUBLIC        Key
+  -------         PROC          KEY
+  -------         DO            
+  D:0014H         SYMBOL        KeyNumber
+  -------         ENDDO         
+  C:00F2H         LINE#         10
+  C:00F2H         LINE#         11
+  C:00F5H         LINE#         13
+  C:010BH         LINE#         14
+  C:0122H         LINE#         15
+  C:0139H         LINE#         16
+  C:0150H         LINE#         18
+  C:0152H         LINE#         19
+  -------         ENDPROC       KEY
+  -------         ENDMOD        KEY
+
+  -------         MODULE        SHU
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00A0H.2       PUBLIC        P2_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00A0H.4       PUBLIC        P2_4
+  C:008FH         PUBLIC        _Shu
+  D:0008H         PUBLIC        Number
+  -------         PROC          _SHU
+  D:0007H         SYMBOL        location
+  D:0004H         SYMBOL        number
+  C:008FH         LINE#         6
+  C:008FH         LINE#         7
+  C:00BCH         LINE#         8
+  C:00C0H         LINE#         9
+  C:00C4H         LINE#         10
+  C:00C8H         LINE#         11
+  C:00CCH         LINE#         12
+  C:00D4H         LINE#         13
+  C:00DCH         LINE#         14
+  C:00E4H         LINE#         15
+  C:00EAH         LINE#         16
+  C:00EAH         LINE#         17
+  C:00F1H         LINE#         20
+  -------         ENDPROC       _SHU
+  -------         ENDMOD        SHU
+
+  -------         MODULE        BUZZER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:00A0H.5       PUBLIC        Buzzer
+  C:01AEH         PUBLIC        Buzzer_Delay500ms
+  D:0012H         PUBLIC        i
+  C:0153H         PUBLIC        _Buzzer_Time
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/13/2022  20:29:24  PAGE 4
+
+
+  -------         PROC          BUZZER_DELAY500MS
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  D:0005H         SYMBOL        k
+  -------         ENDDO         
+  C:01AEH         LINE#         6
+  C:01AEH         LINE#         7
+  C:01AEH         LINE#         10
+  C:01AFH         LINE#         11
+  C:01B0H         LINE#         12
+  C:01B2H         LINE#         13
+  C:01B4H         LINE#         14
+  C:01B6H         LINE#         16
+  C:01B6H         LINE#         18
+  C:01B6H         LINE#         19
+  C:01B8H         LINE#         20
+  C:01BAH         LINE#         21
+  C:01BCH         LINE#         22
+  -------         ENDPROC       BUZZER_DELAY500MS
+  -------         PROC          _BUZZER_TIME
+  D:0014H         SYMBOL        ms
+  C:0153H         LINE#         25
+  C:0157H         LINE#         26
+  C:016EH         LINE#         27
+  C:0170H         LINE#         28
+  C:0173H         LINE#         29
+  C:017DH         LINE#         30
+  -------         ENDPROC       _BUZZER_TIME
+  -------         ENDMOD        BUZZER
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BUZZER_DELAY500MS?BUZZER
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  BUZZER_DELAY500US
+    MODULE:  .\Objects\Buzzer.obj (BUZZER)
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BUZZER_DELAY500US
+    MODULE:  .\Objects\Buzzer.obj (BUZZER)
+    ADDRESS: 0171H
+
+Program Size: data=24.0 xdata=0 code=458
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

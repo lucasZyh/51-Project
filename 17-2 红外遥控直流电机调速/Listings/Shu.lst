@@ -1,0 +1,44 @@
+C51 COMPILER V9.59.0.0   SHU                                                               10/23/2022 20:17:54 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE SHU
+OBJECT MODULE PLACED IN .\Objects\Shu.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE Shu.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Shu.l
+                    -st) OBJECT(.\Objects\Shu.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "Delay.h"
+   3          
+   4          unsigned char Number[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
+   5          
+   6          void Shu(unsigned char location, number){
+   7   1              switch(location){
+   8   2                      case 1 : P2_4 = 1; P2_3 = 1; P2_2 = 1; break;
+   9   2                      case 2 : P2_4 = 1; P2_3 = 1; P2_2 = 0; break;
+  10   2                      case 3 : P2_4 = 1; P2_3 = 0; P2_2 = 1; break;
+  11   2                      case 4 : P2_4 = 1; P2_3 = 0; P2_2 = 0; break;
+  12   2                      case 5 : P2_4 = 0; P2_3 = 1; P2_2 = 1; break;
+  13   2                      case 6 : P2_4 = 0; P2_3 = 1; P2_2 = 0; break;
+  14   2                      case 7 : P2_4 = 0; P2_3 = 0; P2_2 = 1; break;
+  15   2                      case 8 : P2_4 = 0; P2_3 = 0; P2_2 = 0; break;
+  16   2              }
+  17   1              P0=Number[number];
+  18   1      //      Delay(1);//ÏûÓ°
+  19   1      //      P0=0x00;
+  20   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     99    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

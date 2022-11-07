@@ -1,0 +1,39 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              10/02/2022 23:33:29 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "Delay.h"
+   3          #include "Shu.h"
+   4          
+   5          void main(){
+   6   1        while(1){
+   7   2          
+   8   2          Shu(1,3);
+   9   2          Shu(2,6);
+  10   2          Shu(3,7);
+  11   2          Shu(4,1);
+  12   2          Shu(5,8);
+  13   2          Shu(6,5);
+  14   2        }
+  15   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     56    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
