@@ -1,5 +1,5 @@
 #include <REGX52.H>
-
+#include "INTRINS.H"
 //引脚配置：
 /*
 sbit LCD_RS=P2^6; //开发板用
@@ -15,22 +15,24 @@ sbit LCD_EN=P2^2;
 
 //函数定义：
 /**
-  * @brief  LCD1602延时函数，12MHz调用可延时1ms
+  * @brief  LCD1602延时函数，11.0592MHz调用可延时1ms
   * @param  无
   * @retval 无
   */
-void LCD_Delay()
+void LCD_Delay()	
 {
 	unsigned char i, j;
 
-	i = 2;
-	j = 239;
+	_nop_();
+	_nop_();
+	_nop_();
+	i = 11;
+	j = 190;
 	do
 	{
 		while (--j);
 	} while (--i);
 }
-
 /**
   * @brief  LCD1602写命令
   * @param  Command 要写入的命令
