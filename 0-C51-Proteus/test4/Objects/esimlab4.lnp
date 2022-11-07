@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\esimlab4.obj",
+".\Objects\LCD1602.obj" 
+TO ".\Objects\esimlab4" 
+PRINT(".\Listings\esimlab4.m51") DISABLEWARNING (16) 

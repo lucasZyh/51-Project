@@ -1,0 +1,50 @@
+C51 COMPILER V9.59.0.0   ESIMLAB1                                                          10/04/2022 21:16:54 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB1
+OBJECT MODULE PLACED IN .\Objects\esimlab1.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab1.lst) OBJECT(.\Objects\esimlab1.obj)
+
+line level    source
+
+   1          #include <reg52.h>//调用51单片机头文件
+   2          #define uchar unsigned char//定义uchar 即unsigned char
+   3                  
+   4          //延迟函数      
+   5          void delay( )
+   6          {
+   7   1              uchar i,j;//定义变量i,j
+   8   1              for(i=0;i<255;i++)//循环嵌套，达到延迟目的
+   9   1              for(j=0;j<255;j++);
+  10   1      }
+  11          
+  12          void main( )
+  13          {
+  14   1              while(1)
+  15   1      {
+  16   2              uchar temp;//定义变量temp
+  17   2              
+  18   2              P1=0xff;//给P1所有端口赋初值
+  19   2              temp=P1&0xf0;//进行与计算，获得开关的信息
+  20   2              temp=temp>>4;//向右移4位，将开关的信息移位给LED灯
+  21   2              P1=temp;//将temp的值赋给P1
+  22   2              
+  23   2              delay( );
+  24   2      }
+  25   1      
+  26   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     52    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

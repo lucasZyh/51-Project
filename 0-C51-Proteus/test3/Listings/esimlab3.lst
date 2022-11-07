@@ -1,0 +1,40 @@
+C51 COMPILER V9.59.0.0   ESIMLAB3                                                          11/03/2022 15:04:21 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB3
+OBJECT MODULE PLACED IN .\Objects\esimlab3.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab3.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab3.lst) OBJECT(.\Objects\esimlab3.obj)
+
+line level    source
+
+   1          #include <REGX51.H>//调用51单片机头文件
+   2          
+   3          void main(){
+   4   1              
+   5   1              while(1){
+   6   2                      //判断按键是否按下
+   7   2                      if(P3_0 == 0)
+   8   2                      {
+   9   3                              P1_0 = 0;//按键按下，LED灯点亮
+  10   3                      }
+  11   2                      else
+  12   2                      {
+  13   3                              P1_0 = 1;//按键松开，LED灯熄灭
+  14   3                      }
+  15   2              }
+  16   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     11    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

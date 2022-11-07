@@ -1,0 +1,131 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/25/2022  15:06:59  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\Delay.obj TO .\Objects\class1 PRINT (.\Listings\class1.m51) RA
+>> MSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\Delay.obj (DELAY)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\class1 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     005EH     UNIT         ?PR?INT0_ROUTINE?MAIN
+            CODE    0064H     0020H     UNIT         ?PR?MAIN?MAIN
+            CODE    0084H     0014H     UNIT         ?PR?_DELAY?DELAY
+            CODE    0098H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\class1 (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?PR?INT0_ROUTINE?MAIN          0008H    0001H
+  +--> ?PR?_DELAY?DELAY
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?_DELAY?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\class1 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/25/2022  15:06:59  PAGE 2
+
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  B:00A8H.7       PUBLIC        EA
+  C:0064H         PUBLIC        main
+  C:0006H         PUBLIC        Int0_Routine
+  B:0088H.1       PUBLIC        IE0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  B:00B8H.0       PUBLIC        PX0
+  -------         PROC          MAIN
+  C:0064H         LINE#         6
+  C:0064H         LINE#         8
+  C:0066H         LINE#         9
+  C:0068H         LINE#         10
+  C:006AH         LINE#         11
+  C:006CH         LINE#         12
+  C:006EH         LINE#         14
+  C:006EH         LINE#         15
+  C:0071H         LINE#         16
+  C:0078H         LINE#         17
+  C:007BH         LINE#         18
+  C:0082H         LINE#         19
+  -------         ENDPROC       MAIN
+  -------         PROC          INT0_ROUTINE
+  -------         DO            
+  D:0008H         SYMBOL        Count0
+  -------         ENDDO         
+  C:0006H         LINE#         22
+  C:0023H         LINE#         25
+  C:0031H         LINE#         26
+  C:0031H         LINE#         27
+  C:003EH         LINE#         28
+  C:0045H         LINE#         30
+  C:0049H         LINE#         31
+  -------         ENDPROC       INT0_ROUTINE
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0084H         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0084H         LINE#         2
+  C:0084H         LINE#         3
+  C:0084H         LINE#         6
+  C:0088H         LINE#         7
+  C:008AH         LINE#         8
+  C:008CH         LINE#         10
+  C:008CH         LINE#         11
+  C:008EH         LINE#         12
+  C:0090H         LINE#         13
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/25/2022  15:06:59  PAGE 3
+
+
+  C:0095H         LINE#         14
+  C:0097H         LINE#         17
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        DELAY
+
+Program Size: data=10.0 xdata=0 code=164
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,33 @@
+C51 COMPILER V9.59.0.0   ESIMLAB4                                                          11/07/2022 11:59:41 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB4
+OBJECT MODULE PLACED IN .\Objects\esimlab4.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab4.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab4.lst) OBJECT(.\Objects\esimlab4.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "LCD1602.h"//调用LCD1602文件
+   3          
+   4          void main(){
+   5   1              LCD_Init();//初始化LCD1602
+   6   1              LCD_ShowString(1,4,"Welcome To");//调用LCD_ShowString函数
+   7   1              LCD_ShowString(2,6,"ZZULI");//调用LCD_ShowString函数
+   8   1              while(1);
+   9   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     31    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

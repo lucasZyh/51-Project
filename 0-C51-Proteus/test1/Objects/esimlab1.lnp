@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\esimlab1.obj" 
+TO ".\Objects\esimlab1" 
+PRINT(".\Listings\esimlab1.m51") RAMSIZE(256) 

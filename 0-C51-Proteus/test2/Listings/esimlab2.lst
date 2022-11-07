@@ -1,0 +1,58 @@
+C51 COMPILER V9.59.0.0   ESIMLAB2                                                          10/27/2022 16:37:44 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB2
+OBJECT MODULE PLACED IN .\Objects\esimlab2.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab2.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab2.lst) OBJECT(.\Objects\esimlab2.obj)
+
+line level    source
+
+   1          #include<reg51.h>         //调用51头文件
+   2          #include<absacc.h>    //用于访问绝对地址头文件
+   3          #define port P1           //宏定义，P1口
+   4          
+   5          sbit led = P2^7;          //位定义，led表示P2_7口
+   6          
+   7          data unsigned char buffer1[17] _at_ 0x60;    //定义DATA区数组变量，首地址为60H
+   8          xdata unsigned char buffer2[17] _at_ 0x4000; //定义XDATA区数组变量，首地址为4000H
+   9          
+  10          void delay()//延迟函数
+  11          {
+  12   1              unsigned char i,j;
+  13   1              for(i=0;i<255;i++)
+  14   1              for(j=0;j<255;j++);
+  15   1      }
+  16          
+  17          
+  18          void main()
+  19          {
+  20   1              unsigned char i,temp; //定义无符号变量
+  21   1              for(i = 0; i < 17 ; i++)
+  22   1              {
+  23   2                      buffer1[i] = 0x04 + i; //向片内RAM0x60地址存入04H-14H共17个字节
+  24   2              }
+  25   1              for(i = 0; i < 17 ; i++)
+  26   1              {
+  27   2                      buffer2[i] = buffer1[i];//将片内RAM中的数据04H-14H传送到片外RAM中保存
+  28   2                      temp = buffer2[i];//依次取出片外RAM中的值
+  29   2                      port = ~temp;//将数据送到P1口，控制LED灯亮灭
+  30   2                      delay();
+  31   2              }
+  32   1              led = 0;//数据传送完毕，点亮LED灯
+  33   1              while(1);
+  34   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    111    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
