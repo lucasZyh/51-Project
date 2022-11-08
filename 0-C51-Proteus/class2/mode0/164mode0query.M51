@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/06/2019  20:59:33  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\PROGRAM FILES (X86)\LABCENTER ELECTRONICS\KEIL\C51\BIN\BL51.EXE 164mode0query.obj TO 164mode0query RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  164mode0query.obj (164MODE0QUERY)
+  D:\PROGRAM FILES (X86)\LABCENTER ELECTRONICS\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  164mode0query (164MODE0QUERY)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?164MODE0QUERY
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     002EH     UNIT         ?PR?MAIN?164MODE0QUERY
+            CODE    0031H     0017H     UNIT         ?PR?_DELAY?164MODE0QUERY
+            CODE    0048H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   164mode0query (164MODE0QUERY)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?164MODE0QUERY
+
+?PR?MAIN?164MODE0QUERY
+  +--> ?PR?_DELAY?164MODE0QUERY
+
+
+
+SYMBOL TABLE OF MODULE:  164mode0query (164MODE0QUERY)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        164MODE0QUERY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.0       PUBLIC        P1_0
+  C:0031H         PUBLIC        _delay
+  D:0008H         PUBLIC        nSendByte
+  B:0098H.1       PUBLIC        TI
+  C:0003H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/06/2019  20:59:33  PAGE 2
+
+
+  D:0098H         PUBLIC        SCON
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        i
+  -------         DO            
+  D:0005H         SYMBOL        j
+  -------         ENDDO         
+  C:0031H         LINE#         3
+  C:0031H         LINE#         4
+  C:0031H         LINE#         6
+  C:003AH         LINE#         7
+  C:0047H         LINE#         9
+  -------         ENDPROC       _DELAY
+  -------         PROC          MAIN
+  C:0003H         LINE#         10
+  C:0003H         LINE#         11
+  C:0003H         LINE#         12
+  C:0006H         LINE#         13
+  C:0009H         LINE#         14
+  C:0009H         LINE#         15
+  C:000CH         LINE#         16
+  C:000EH         LINE#         17
+  C:0011H         LINE#         18
+  C:0013H         LINE#         19
+  C:0016H         LINE#         20
+  C:001DH         LINE#         21
+  C:001FH         LINE#         22
+  C:0025H         LINE#         23
+  C:002AH         LINE#         24
+  C:002DH         LINE#         25
+  C:002FH         LINE#         27
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        164MODE0QUERY
+
+Program Size: data=10.0 xdata=0 code=84
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

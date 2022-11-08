@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"mode1A.obj" 
+TO "mode1DoubleMCU" 
+RAMSIZE(256) 

@@ -1,0 +1,55 @@
+C51 COMPILER V9.01   164MODE0QUERY                                                         05/06/2019 20:59:32 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 164MODE0QUERY
+OBJECT MODULE PLACED IN 164mode0query.OBJ
+COMPILER INVOKED BY: D:\Program Files (x86)\Labcenter Electronics\Keil\C51\BIN\C51.EXE 164mode0query.c BROWSE DEBUG OBJE
+                    -CTEXTEND
+
+line level    source
+
+   1          #include"at89x52.h"
+   2           unsigned char nSendByte;
+   3           void delay(unsigned int i)
+   4           {
+   5   1               unsigned char j;
+   6   1               for(;i>0;i--)
+   7   1               for(j=0;j<125;j++)
+   8   1               ;
+   9   1       }
+  10           void main()
+  11           {
+  12   1              SCON=0x00;
+  13   1              nSendByte=1;
+  14   1              for(;;){
+  15   2               SBUF=nSendByte;          //启动串口
+  16   2               P1_0=0;                                 //允许串口发送数据至74LS164
+  17   2               while(!TI){;}
+  18   2               P1_0=1;                                  //允许74LS164并行输出
+  19   2               SBUF=nSendByte;
+  20   2               delay(500);
+  21   2               P1_0=0;
+  22   2               nSendByte=nSendByte<<1;
+  23   2               if(nSendByte==0)nSendByte=1;
+  24   2              SBUF=nSendByte;
+  25   2              TI=0;
+  26   2              //RI=0;
+  27   2              }
+  28   1      
+  29   1              
+  30   1       }
+  31           
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     69    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

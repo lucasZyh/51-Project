@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"mode1B.obj" 
+TO "mode1B" 
+RAMSIZE(256) 
