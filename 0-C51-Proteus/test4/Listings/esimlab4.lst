@@ -1,4 +1,4 @@
-C51 COMPILER V9.59.0.0   ESIMLAB4                                                          11/07/2022 21:44:53 PAGE 1   
+C51 COMPILER V9.59.0.0   ESIMLAB4                                                          11/10/2022 22:35:57 PAGE 1   
 
 
 C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB4
@@ -8,23 +8,106 @@ COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab4.c OPTIMIZE(8,SPEED) BRO
 
 line level    source
 
-   1          #include <REGX51.H>
-   2          #include "LCD1602.h"//调用LCD1602文件
+   1          //#include <REGX51.H>
+   2          //#include "LCD1602.h"//调用LCD1602文件
    3          
-   4          void main(){
-   5   1              LCD_Init();//初始化LCD1602
-   6   1              LCD_ShowString(1,4,"Welcome To");//调用LCD_ShowString函数
-   7   1              LCD_ShowString(2,6,"ZZULI");//调用LCD_ShowString函数
-   8   1              while(1);
-   9   1      }
+   4          //void main(){
+   5          //      LCD_Init();//初始化LCD1602
+   6          //      LCD_ShowString(1,4,"Welcome To");//调用LCD_ShowString函数
+   7          //      LCD_ShowString(2,6,"ZZULI");//调用LCD_ShowString函数
+   8          //      while(1);
+   9          //}
+  10          #include <reg51.h>
+  11          #include <intrins.h>//??_nop_()?????????
+  12          #define uchar unsigned char
+  13          #define uint undigned int
+  14          #define out P0
+  15          sbit RS=P2^0;//???
+  16          sbit RW=P2^1;//???
+  17          sbit E=P2^2;//???
+  18          void lcd_initial(); //LCD?????
+  19          void write_command(uchar com); //?????
+  20          void write_data(uchar dat); //?????
+  21          void string(uchar ad,uchar *s); //???????LCD?????
+  22          void delay(uchar j); //??
+  23          
+  24          void main(void)
+  25          {
+  26   1       lcd_initial();
+  27   1       while(1)
+  28   1      {
+  29   2        string(0x85,"SGH"); //???????????SGH
+  30   2        string(0xC2,"YMM"); //???????????YMM
+  31   2        delay(100);//??
+  32   2                                      write_command(0x01);//??????
+  33   2                                      delay(100);//??
+  34   2      }
+  35   1      }
+  36          
+  37          void delay(uchar j)
+  38          {
+  39   1       uchar i = 250;
+  40   1       for(; j>0; j--)
+  41   1      {
+  42   2        while(--i);
+  43   2        i = 249;
+  44   2        while(--i);
+  45   2        i = 250;
+  46   2      }
+  47   1      }
+  48          
+  49          void write_command(uchar com)
+  50          {
+  51   1       E=0;
+  52   1       RS=0;
+  53   1       RW=0;
+  54   1       out=com;
+C51 COMPILER V9.59.0.0   ESIMLAB4                                                          11/10/2022 22:35:57 PAGE 2   
+
+  55   1       E=1; //???????,?????
+  56   1       _nop_();
+  57   1       E=0;
+  58   1       delay(1);
+  59   1      }
+  60          
+  61          void write_data(uchar dat)//???????
+  62          {
+  63   1       E=0;
+  64   1       RS=1;
+  65   1       RW=0;
+  66   1       out=dat;
+  67   1       E=1; //???????,????
+  68   1                      _nop_();
+  69   1       E=0;
+  70   1       delay(1);
+  71   1      }
+  72          
+  73          void lcd_initial(void)
+  74          {
+  75   1       write_command(0x38);//8???,????,5X7?????
+  76   1       write_command(0x0C);//?????,???,???
+  77   1       write_command(0x06);//????
+  78   1       write_command(0x01);//??
+  79   1       delay(1);
+  80   1      }
+  81          
+  82          void string(uchar ad,uchar *s)//??????????
+  83          {
+  84   1       write_command(ad); //?????RAM??
+  85   1       while(*s>0)
+  86   1      {
+  87   2                      write_data(*s++); //??????
+  88   2                      delay(100);
+  89   2      }
+  90   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     31    ----
-   CONSTANT SIZE    =     17    ----
+   CODE SIZE        =    179    ----
+   CONSTANT SIZE    =      8    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =   ----       3
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
