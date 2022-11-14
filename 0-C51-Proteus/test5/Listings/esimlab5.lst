@@ -1,0 +1,88 @@
+C51 COMPILER V9.59.0.0   ESIMLAB5                                                          11/14/2022 12:30:32 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB5
+OBJECT MODULE PLACED IN .\Objects\esimlab5.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab5.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab5.lst) OBJECT(.\Objects\esimlab5.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          sbit D1=P0^0;
+   4          unsigned char Number[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,
+   5                                                            0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+   6          
+   7          unsigned char i;
+   8                                                            
+   9          void Delay(unsigned int t)              //延时函数
+  10          {
+  11   1              unsigned char i, j;
+  12   1              while(t){
+  13   2                      i = 2;
+  14   2                      j = 239;
+  15   2                      do
+  16   2                      {
+  17   3                              while (--j);
+  18   3                      } while (--i);
+  19   2                      t--;
+  20   2              }
+  21   1      }
+  22          
+  23          void main(){
+  24   1      
+  25   1              //中断初始化
+  26   1              EX0 = 1;//允许外部中断0中断
+  27   1              EX1 = 1;//允许外部中断0中断
+  28   1              
+  29   1              IT0 = 1;//外部中断0为跳沿触发
+  30   1              IT1 = 1;//外部中断1为跳沿触发
+  31   1              IE0 = 0;//外部中断0的请求标志位
+  32   1              IE1 = 0;//外部中断1的请求标志位
+  33   1              
+  34   1              EA = 1;//中断总允许
+  35   1              
+  36   1              PX0 = 0;//外部中断0为低优先级
+  37   1              PX1 = 0;//外部中断1为高优先级
+  38   1              
+  39   1              while(1){
+  40   2                      P2 = 0x00;//数码管初始化
+  41   2              }
+  42   1      }
+  43          
+  44          void Int0_Routine(void) interrupt 0 using 1//外部中断0中断服务函数
+  45          {
+  46   1              D1 = ~D1;
+  47   1      }
+  48          
+  49          void Int1_Routine(void) interrupt 2 using 2//外部中断1中断服务函数
+  50          {
+  51   1              unsigned char count = 3;
+  52   1              while(count != 0)
+  53   1              {
+  54   2                      for(i = 0;i<16;i++)
+C51 COMPILER V9.59.0.0   ESIMLAB5                                                          11/14/2022 12:30:32 PAGE 2   
+
+  55   2              {
+  56   3                      P2 = Number[i];
+  57   3                      Delay(100);
+  58   3              }
+  59   2              count--;
+  60   2              }
+  61   1              
+  62   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     99    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
