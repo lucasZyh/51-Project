@@ -1,0 +1,63 @@
+C51 COMPILER V9.59.0.0   ESIMLAB6                                                          11/21/2022 15:18:46 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB6
+OBJECT MODULE PLACED IN .\Objects\esimlab6.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab6.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab6.lst) OBJECT(.\Objects\esimlab6.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          //void Timer1_Init(void); //中断初始化函数
+   4          
+   5          void Timer1_Init(void)          //1毫秒@12.000MHz
+   6          {
+   7   1              TMOD &= 0x0F;           //设置定时器模式
+   8   1              TMOD |= 0x10;           //设置定时器模式
+   9   1              TL1 = 0x18;             //设置定时初值
+  10   1              TH1 = 0xFC;             //设置定时初值
+  11   1              TF1 = 0;                //清除TF1标志
+  12   1              TR1 = 1;                //定时器1开始计时
+  13   1              ET1 = 1;                
+  14   1              EA = 1;                 //中断总允许
+  15   1              PT1 = 0;
+  16   1      }
+  17          
+  18          void main(){
+  19   1              
+  20   1              Timer1_Init();
+  21   1              P1_0 = 0;
+  22   1              while(1){
+  23   2                      
+  24   2              }
+  25   1      }
+  26          
+  27          
+  28          void Timer1_Routine() interrupt 3 
+  29          {
+  30   1              static unsigned int count1 = 0;
+  31   1              TL1 = 0x18;             //设置定时初值
+  32   1              TH1 = 0xFC;             //设置定时初值    
+  33   1              count1++;
+  34   1              if(count1 == 3000){
+  35   2                      count1 = 0;
+  36   2                      P1_0 = ~P1_0;
+  37   2              }
+  38   1                      
+  39   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     69    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
