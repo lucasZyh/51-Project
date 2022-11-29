@@ -1,0 +1,71 @@
+C51 COMPILER V9.59.0.0   ESIMLAB7                                                          11/28/2022 15:45:45 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB7
+OBJECT MODULE PLACED IN .\Objects\esimlab7.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab7.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab7.lst) OBJECT(.\Objects\esimlab7.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          sbit SW1 = P3^5;
+   4          
+   5          void Delay(unsigned int t)//延时函数
+   6          {
+   7   1              
+   8   1              unsigned char i, j;
+   9   1              while(t){
+  10   2                      i = 2;
+  11   2                      j = 239;
+  12   2                      do
+  13   2                      {
+  14   3                              while (--j);
+  15   3                      } while (--i);
+  16   2                      t--;
+  17   2              }
+  18   1      }
+  19          
+  20          void send(unsigned char dat){
+  21   1              SBUF = dat;//待发送数据写入发送缓冲寄存器
+  22   1              while(TI == 0);//串口未发生完，等待
+  23   1              ;
+  24   1              TI = 0;//1个字节发送完毕，等待
+  25   1      }
+  26          void main(){
+  27   1              unsigned char i = 01;
+  28   1              TMOD &= 0x0F;           //清除定时器1模式位
+  29   1              TMOD |= 0x20;           //设定定时器1为8位自动重装方式
+  30   1              
+  31   1              PCON = 0x00;            //波特率不倍速
+  32   1              SCON = 0x40;            //8位数据,可变波特率
+  33   1              
+  34   1              TL1 = 0xFD;             //设定定时初值
+  35   1              TH1 = 0xFD;             //设定定时器重装值
+  36   1              TR1 = 1;                //启动定时器1
+  37   1              
+  38   1              while(1){
+  39   2                      
+  40   2                      if(SW1 == 0){
+  41   3                              send(i);
+  42   3                              Delay(200);
+  43   3                      }
+  44   2              }
+  45   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     67    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.59.0.0   ESIMLAB7                                                          11/28/2022 15:45:45 PAGE 2   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
