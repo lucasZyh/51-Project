@@ -1,0 +1,164 @@
+C51 COMPILER V9.59.0.0   ESIMLAB8                                                          12/05/2022 18:40:05 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ESIMLAB8
+OBJECT MODULE PLACED IN .\Objects\esimlab8.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE esimlab8.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -esimlab8.lst) OBJECT(.\Objects\esimlab8.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <absacc.h>
+   3          
+   4          #define PA       XBYTE[0x7FFC]   //PA端口地址
+   5          #define PB       XBYTE[0x7FFD]          
+   6          #define PC       XBYTE[0x7FFE]
+   7          #define COM      XBYTE[0x7FFF]
+   8          
+   9          char code dx516[3] _at_ 0x003b;
+  10          
+  11          unsigned char Second[] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x10};  
+  12          unsigned char count = 0, total = 0;
+  13          
+  14          /**************8255初始化******************************/
+  15          void init_8255(void)
+  16          {
+  17   1              COM = 0x80;     // 方式0,C = out B=out A = out
+  18   1              PA = 0xFF;
+  19   1              PB = 0xFF;
+  20   1      }
+  21          
+  22          /**************定时器1初始化******************************/
+  23          void init_T1(void)
+  24          {
+  25   1              TMOD &= 0x0F;//设置定时器模式
+  26   1              TMOD |= 0x10;//设置定时器模式
+  27   1              TL1 = 0x00;     //设置定时初值
+  28   1              TH1 = 0x4C;     //设置定时初值
+  29   1              TF1 = 0;//清除TF1标志
+  30   1              ET1 = 1; //允许定时器中断1
+  31   1              EA = 1; //开总中断
+  32   1              TR1 = 0;//定时器1先不工作 
+  33   1      }
+  34          
+  35          //-------------------
+  36          // 函数名称： void delay_s(unsigned t)
+  37          // 函数功能： 利用定时器延时t*0.5秒子程序
+  38          //-------------------
+  39          void delay_s(unsigned char t)
+  40          {  
+  41   1              TR1 = 1;//启动定时器1
+  42   1              total = t * 10;
+  43   1              count = 0;
+  44   1              while(1)
+  45   1              {
+  46   2                if(count == total)//定时时间到
+  47   2                      {
+  48   3                              count = 0;      
+  49   3                              total = 0;
+  50   3                              TR1 = 0;
+  51   3                              return;
+  52   3                      }
+  53   2              }
+  54   1      }
+C51 COMPILER V9.59.0.0   ESIMLAB8                                                          12/05/2022 18:40:05 PAGE 2   
+
+  55          
+  56          void timer1() interrupt 3       //定时器1
+  57          {     
+  58   1              TR1 = 0;
+  59   1              TL1 = 0x00;     //设置定时初值
+  60   1              TH1 = 0x4C;     //设置定时初值
+  61   1              count++;
+  62   1              TR1 = 1;
+  63   1      }
+  64          
+  65          void main(void)
+  66          {
+  67   1              unsigned char i = 0;
+  68   1              init_8255();//初始化8255
+  69   1              init_T1();//初始化定时器1
+  70   1              while(1)
+  71   1              {       
+  72   2                      //东西方向->南北方向
+  73   2                      for(i = 10;i > 0;i--)
+  74   2                      {
+  75   3                              PC = Second[i];                 
+  76   3                              if(i < 4)//东西方向绿灯/南北方向红灯闪烁3秒
+  77   3                              {
+  78   4                                      PA = 0xFF;
+  79   4                                      PB = 0xFF;                              
+  80   4                                      delay_s(1);
+  81   4                                      PA =0xF6;
+  82   4                                      PB =0xDB;
+  83   4                                      delay_s(1);     
+  84   4                              }
+  85   3                              else
+  86   3                              {
+  87   4                                      PA = 0xF6;      //东西绿灯亮
+  88   4                                      PB = 0xDB;      //南北红灯亮 
+  89   4                                      delay_s(2);
+  90   4                              }
+  91   3                      }
+  92   2                      
+  93   2                      for(i = 3;i > 0; i--)
+  94   2                      {
+  95   3                              PC = Second[i];
+  96   3                              PA = 0xED;//东西黄灯亮
+  97   3                              PB = 0xED;//南北黄灯亮                             
+  98   3                              delay_s(1);
+  99   3                              PA = 0xFF;
+ 100   3                              PB = 0xFF;    
+ 101   3                              delay_s(1); 
+ 102   3                      }
+ 103   2               
+ 104   2                      //南北方向->东西方向
+ 105   2                      for(i = 10;i > 0;i--)
+ 106   2                      {
+ 107   3                              PC = Second[i];                 
+ 108   3                              if(i < 4)//南北方向绿灯/东西方向红灯闪烁3秒
+ 109   3                              {
+ 110   4                                      PA = 0xFF;
+ 111   4                                      PB = 0xFF;      
+ 112   4                                      delay_s(1);
+ 113   4                                      PA = 0xDB;  //东西红灯亮
+ 114   4                                      PB = 0xF6;  //南北绿灯亮
+ 115   4                                      delay_s(1);     
+ 116   4                              }
+C51 COMPILER V9.59.0.0   ESIMLAB8                                                          12/05/2022 18:40:05 PAGE 3   
+
+ 117   3                              else
+ 118   3                              {
+ 119   4                                      PA = 0xDB;       //东西红灯亮
+ 120   4                                      PB = 0xF6;   //南北绿灯亮
+ 121   4                                      delay_s(2);
+ 122   4                              }
+ 123   3                      }
+ 124   2                      
+ 125   2                      for(i = 3;i > 0;i--)
+ 126   2                      {
+ 127   3                              PC = Second[i];
+ 128   3                              PA = 0xED;//东西黄灯亮
+ 129   3                              PB = 0xED;//南北黄灯亮                             
+ 130   3                              delay_s(1);
+ 131   3                              PA = 0xFF;
+ 132   3                              PB = 0xFF;  
+ 133   3                              delay_s(1); 
+ 134   3                      }
+ 135   2              }       
+ 136   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    299    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     13    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
